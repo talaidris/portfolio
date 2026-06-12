@@ -16,19 +16,14 @@ apps.forEach(app => {
 
 function showTime() {
   let date = new Date();
-  let h = date.getHours();
-  let m = date.getMinutes();
-  // let s = date.getSeconds();
+  let hours24 = date.getHours();
+  let minutes = date.getMinutes();
 
-  if (h == 0) {
-    h = 12;
-  }
-
-  h = (h < 10) ? "0" + h : h;
-  m = (m < 10) ? "0" + m : m;
-  // s = (s < 10)? "0" + s : s;
-
-  let time = h + ":" + m
+  let ampm = hours24 >= 12 ? 'PM' : 'AM';
+  let hours12 = hours24 % 12;
+  hours12 = hours12 === 0 ? 12 : hours12;
+  let minutesStr = minutes < 10 ? "0" + minutes : minutes;
+  let time = hours12 + ":" + minutesStr + " " + ampm;
 
   document.getElementById("clockdisplay").innerText = time;
   document.getElementById("clockdisplay").textContent = time;
@@ -55,38 +50,39 @@ pcon.style.display = "none";
 let jcon = document.getElementById("journalC");
 jcon.style.display = "none";
 
-about.addEventListener("click", function (event) {
-  acon.style.display = "block";
-  appgrid.style.display = "none";
 
-  screen.style.backgroundImage = "none"
-  screen.style.backgroundColor = "gray"
-});
+// UNCOMMENT LATER!!
 
-projects.addEventListener("click", function (event) {
-  pcon.style.display = "block"
-  appgrid.style.display = "none";
 
-  screen.style.backgroundImage = "none"
-  screen.style.backgroundColor = "pink"
-});
+// about.addEventListener("click", function (event) {
+//   acon.style.display = "block";
+//   appgrid.style.display = "none";
 
-journal.addEventListener("click", function (event) {
-  jcon.style.display = "block"
-  appgrid.style.display = "none";
+//   screen.style.background = "gray"
+// });
 
-  screen.style.backgroundImage = "none"
-  screen.style.backgroundColor = "pink"
-});
+// projects.addEventListener("click", function (event) {
+//   pcon.style.display = "block"
+//   appgrid.style.display = "none";
 
-homeB.addEventListener("click", function (event) {
-  acon.style.display = "none";
-  pcon.style.display = "none";
-  jcon.style.display = "none";
-  appgrid.style.display = "grid";
+//   screen.style.background = "pink"
+// });
 
-  screen.style.backgroundImage = "url('../images/bg.png')"
-});
+// journal.addEventListener("click", function (event) {
+//   jcon.style.display = "block"
+//   appgrid.style.display = "none";
+
+//   screen.style.background = "pink"
+// });
+
+// homeB.addEventListener("click", function (event) {
+//   acon.style.display = "none";
+//   pcon.style.display = "none";
+//   jcon.style.display = "none";
+//   appgrid.style.display = "grid";
+
+//   screen.style.background = "";
+// });
 
 
 

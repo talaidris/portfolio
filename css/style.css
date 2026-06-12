@@ -1,3 +1,21 @@
+/* REMOVE LATER!! */
+.full-page-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999; 
+      pointer-events: none; 
+    }
+
+    .full-page-overlay img {
+      width: 100%;
+      height: 100%;
+      object-fit:scale-down; 
+      opacity: 0.5;
+    }
+/* ------------------ */
 
 * {
   margin: 0;
@@ -7,7 +25,7 @@
 }
 
 body {
-  background-image: url("../images/bg.png");
+  background-image: url("../images/bg.jpg");
   background-size: 100%;
   background-repeat:none;
   font-family: monospace;
@@ -33,6 +51,7 @@ body {
 #contact {
   text-align: left;
   padding-left: 5%;
+  color: #f2f2f7;
 }
 
 #contact h1 {
@@ -42,7 +61,6 @@ body {
 
 #contact p {
   font-size: 1.2rem;
-  color: #555;
   margin-bottom: 20px;
 }
 
@@ -55,9 +73,9 @@ body {
 
 #device-screen {
   background-color: #868686;
-  background-image: url("../images/bg.png");
+  background-image: url("../images/bg.jpg");
   background-size: 100%;
-  border: #000000;
+  border: #1f1f1f;
   border-style: solid;
   border-width: 15px;
   border-radius: 45px;
@@ -70,7 +88,7 @@ body {
 }
 
 #notch {
-  background-color: #000000;
+  background-color: #1f1f1f;
   width: 150px;
   border-radius: 20px;
   border-top-left-radius: 0px;
@@ -83,9 +101,10 @@ body {
 
 .clock {
   position: sticky;
-  transform: translateX(10px) translateY(-25px);
-  font-size: 14px;
-  letter-spacing: 2px;
+  transform: translateX(0px) translateY(-22px);
+  font-size: 12.5px;
+  letter-spacing: 1px;
+  color: #f2f2f7;
   width: fit-content;
 }
 
@@ -94,6 +113,10 @@ body {
   top: 0px;
   backdrop-filter: blur(5px);
   height: 30px;
+}
+
+#levels {
+  width: 10px;
 }
 
 #home {
@@ -115,7 +138,7 @@ body {
 
 .app {
   text-decoration: none;
-  color: gray;
+  color: #f2f2f7;
   text-align: center;
   padding: 10px;
 }
@@ -129,7 +152,8 @@ body {
 
 .app span {
   display: block;
-  font-size: 14px;
+  font-size: 12.5px;
+  letter-spacing: 0px;
 }
 
 
