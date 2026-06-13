@@ -94,7 +94,7 @@ projectsApp.addEventListener("click", function () {
   screen.style.background = "#4e2f63";
 });
 
-// Messages App – show container and initialize the chat
+// Messages App 
 messagesApp.addEventListener("click", function () {
   expCon.style.display = "none";
   eduCon.style.display = "none";
@@ -104,10 +104,21 @@ messagesApp.addEventListener("click", function () {
   appgrid.style.display = "none";
   screen.style.background = "#0C0C0D";
 
+  // Change phone screen layout for Messages app only
+  screen.style.display = "flex";
+  screen.style.flexDirection = "column";
+  screen.style.overflowY = "hidden";
+
   // Call the global initializer from messages.js
   if (typeof window.initMessagesApp === "function") {
     window.initMessagesApp();
   }
+
+  // Focus the input on mobile
+  setTimeout(() => {
+    const messageInput = document.getElementById("messageInput");
+    if (messageInput) messageInput.focus();
+  }, 100);
 });
 
 // Home button
@@ -118,6 +129,10 @@ homeB.addEventListener("click", function () {
   pcon.style.display = "none";
   messagesContainer.style.display = "none";
   appgrid.style.display = "grid";
+
   screen.style.background = "";
+  screen.style.display = "";
+  screen.style.flexDirection = "";
+  screen.style.overflowY = "auto";
 });
 
