@@ -1,0 +1,166 @@
+<!--
+Name: Azeen Saba
+Student Number: 400520177
+Date created: April 20 2025
+Description: Merch Store
+-->
+
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>MISA Merch</title>
+<script>
+  const cartContainer = document.getElementById('cart');
+  const emptyMessage  = document.getElementById('cartEmpty');
+  const itemsList = document.getElementById('cartItems');
+  const totalDisplay = document.getElementById('cartTotal');
+
+  cartContainer.style.visibility = 'hidden';
+
+  function loadCart() {
+    fetch('get_cart.php')
+      .then(response => response.json())
+      .then(data => {
+        const items = data.items || [];
+        const total = data.total || '0.00';
+        displayCart(items, total);
+      })
+      .catch(error => console.error('Failed to load cart:', error));
+  }
+
+  function addToCart(name, price) {
+    const params = new URLSearchParams();
+    params.append('item',  name);
+    params.append('price', price);
+
+    fetch('cart.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString()
+    })
+    .then(response => response.json())
+    .then(result => {
+      if (result.success) {
+        loadCart();
+      } else {
+        alert(result.message || 'Could not add to cart');
+      }
+    })
+    .catch(error => console.error('Add to cart failed:', error));
+  }
+
+
+  function displayCart(items, total) {
+
+    cartContainer.style.visibility = items.length ? 'visible' : 'hidden';
+    emptyMessage.style.display = items.length ? 'none' : 'block';
+    itemsList.innerHTML = '';
+
+    items.forEach(function(row) {
+      const li = document.createElement('li');
+      const subtotal = (row.price * row.quantity).toFixed(2);
+      li.textContent = row.merch_name + ' x ' + row.quantity + ' — $' + subtotal;
+      itemsList.appendChild(li);
+    });
+
+    totalDisplay.textContent = items.length ? 'Total: $' + total : '';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.merch-item button')
+      .forEach(function(button) {
+        const name  = button.getAttribute('data-name');
+        const price = button.getAttribute('data-price');
+        button.addEventListener('click', function() {
+          addToCart(name, price);
+        });
+      });
+    loadCart();
+  });
+</script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="headerMain">
+            <a id="logo" href="index.html"><img id="logo" src="images/logo.png" style="width: 100px;"></a>
+            <div id="headtext">
+                <a href="index.html" id="homelink">
+                    <h1>MISA</h1>
+                    <p>McMaster Ismaili Student Association</p>
+                </a>
+            </div>
+            <div id="navbar">
+                <a href="about.html" class="link">About Us</a>
+                <a href="events.php" class="link">Events</a>
+                <a href="sports.html" class="link">Sports</a>
+                <a href="merch.html" class="link">Merch</a>
+                <a href="admin.html" class="link">admin login</a>
+            </div>
+        </div>
+
+        <div id="clothes">
+            <h2>Welcome to our merch store! All items are $35.00</h2>
+            <h2>Items are $5 extra for customization!</h2>
+
+            <div id="crewnecks">
+
+                <div class="merch-item">
+                    <img src="images/hoodiewhite.png" alt="White Crewneck">
+                    <h2>White Crewneck</h2>
+                    <h3>Price: $35.00</h3>
+                    <button onclick="addToCart('White Crewneck', 35)">Add to Cart</button>
+                </div>
+
+                <div class="merch-item">
+                    <img src="images/hoodieblack.png" alt="Black Crewneck">
+                    <h2>Black Crewneck</h2>
+                    <h3>Price: $35.00</h3>
+                    <button onclick="addToCart('Black Crewneck', 35)">Add to Cart</button>
+                </div>
+
+            </div>
+
+            <div id="hoodieblack">
+                <div class="merch-item">
+                    <img src="images/hoodieblack2.png" alt="Black Hoodie" style="width: 70%;">
+                    <h2>Black Hoodie</h2>
+                    <h3>Price: $35</h3>
+                    <button onclick="addToCart('Black Hoodie', 35)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div id="hoodiewhite">
+                <div class="merch-item">
+                    <img src="images/hoodiewhite2.png" alt="White Hoodie" style="width: 70%;">
+                    <h2>White Hoodie</h2>
+                    <h3>Price: $35</h3>
+                    <button onclick="addToCart('White Hoodie', 35)">Add to Cart</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="cart">
+          <h2 id="cartTitle">Your Cart</h2>
+          <p id="cartEmpty">Your cart is empty.</p>
+          <ul id="cartItems"></ul>
+        </div>
+
+        <div id="footer">
+            <a href="https://www.instagram.com/misa.masi/" target="_blank">
+                <img class="instagram-logo" src="images/instagramLogo.png" alt="Instagram">
+            </a>
+            <p>&copy; MISA, McMaster University, 2025</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

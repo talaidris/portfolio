@@ -1,0 +1,760 @@
+/* Name and Student Number: Kanza Alam 400528885, Tala Idris 400571015, Muniya Fallah 400594083, Azeen Saba 400520177
+* Date created: March 26 2025
+* Description: stylesheet (css file) for the whole website's format/layout/style.
+*/
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    margin: 0px;
+    color: black;
+    background-color: beige;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/*---------------------------------------HEADER CONTENT-------------------------------------------*/
+
+#headerMain,
+#headerRest {
+    display: flex;
+    padding: 5px;
+    color: beige;
+    background-color: black;
+    justify-content: left;
+    width: 100%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    margin: 0;
+}
+
+#logo {
+    width: 20%;
+    margin-left: 3%;
+}
+
+#headerMain,
+#headerRest {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (max-width: 750px) {
+
+    #headerMain,
+    #headerRest {
+        flex-direction: column;
+    }
+}
+
+#logo-container {
+    width: 160px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#animationCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+@media (max-width: 750px) {
+    #logo-container {
+        width: 100px;
+        margin: 0 auto;
+    }
+}
+
+#headtext {
+    width: 45%;
+    font-size: large;
+    margin-left: 0%;
+    align-self: center;
+
+}
+
+#headtext p {
+    padding: 0%;
+    margin-top: 0%;
+}
+
+#headtext h1 {
+    padding-top: 1%;
+    margin-bottom: 0%;
+    margin-top: 0%;
+}
+
+#homelink {
+    color: beige;
+    text-decoration: none;
+}
+
+#navbar {
+    display: flex;
+    flex-direction: row;
+    width: 35%;
+    align-self: center;
+}
+
+#navbar:hover {
+    color: rgb(141, 141, 141);
+}
+
+.link {
+    text-align: left;
+    padding: 0.5%;
+    margin: 1%;
+    color: beige;
+    text-decoration: none;
+}
+
+@media (max-width: 750px) {
+    #header {
+        flex-direction: column;
+    }
+
+    #headtext {
+        width: 100%;
+        text-align: center;
+    }
+
+    #navbar {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .link {
+        width: 25%;
+        text-align: center;
+    }
+}
+
+button {
+    background-color: #7b0b01;
+    color: blanchedalmond;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5a0800;
+}
+
+#submit {
+    background-color: #7b0b01;
+    color: blanchedalmond;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submit:hover {
+    background-color: #5a0800;
+}
+
+/*---------------------------------------INDEX CONTENT-------------------------------------------*/
+
+#banner {
+    width: 60%;
+    margin-bottom: 0;
+}
+
+body p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#location {
+    text-align: center;
+    color: beige;
+    background-color: #7b0b01;
+    padding: 1px;
+    width: 100%;
+
+    p {
+        margin: 30px;
+    }
+}
+
+#skitsNightImg {
+    width: 90%;
+}
+
+#intro {
+    text-align: center;
+}
+
+#Icontent {
+    text-align: center;
+
+    p {
+        margin: 50px;
+    }
+}
+
+#IAbout {
+    h2 {
+        text-align: center;
+    }
+}
+
+#IAbout {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.accordion {
+    background-color: #7b0b01;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 3%;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    margin-top: 10px;
+    border-radius: 8px;
+    position: relative;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.accordion:hover {
+    background-color: #510801;
+}
+
+.panel {
+    padding: 0 3%;
+    transition: max-height 0.3s ease-out;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 0;
+}
+
+.accordion.active+.panel {
+    max-height: 1000px;
+}
+
+.accordion .arrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.accordion.active .arrow {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+#feedback {
+    padding-top: 1%;
+    width: 100%;
+    color: beige;
+    text-decoration: none;
+    text-align: center;
+    align-content: center;
+    background-color: #7b0b01;
+}
+
+#feedback a {
+    color: beige;
+}
+
+#feedbackMessage {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#feedbackMessage.show {
+    display: block;
+}
+
+/*---------------------------------------FEEDBACK FORM CONTENT-------------------------------------------*/
+
+#feedbackForm {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 40px;
+
+}
+
+#feedbackForm div {
+    text-align: center;
+}
+
+#feedbackForm p {
+    margin-bottom: 0;
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+input,
+textarea {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 90%;
+    height: 100px;
+}
+
+.center-text {
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#eventID {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    width: 250px;
+    appearance: none;
+    cursor: pointer;
+
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2010%206'%3E%3Cpath%20d='M0%200l5%206%205-6z'%20fill='%23333'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+}
+
+button[type="submit"] {
+    background-color: #7b0b01;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #a30000;
+}
+
+/*---------------------------------------SIGNUP FORM CONTENT-------------------------------------------*/
+
+#signupForm {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#signupForm h5 {
+    margin-bottom: 0;
+    margin-top: 5%;
+    font-size: 25px;
+}
+
+.submit-button {
+    background-color: #7b0b01;
+    color: blanchedalmond;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#emailWarning {
+    color: rgb(255, 0, 0);
+    display: none;
+}
+
+/*---------------------------------------ABOUT CONTENT-------------------------------------------*/
+
+#Acontent {
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+    padding-bottom: 5%;
+}
+
+.Atile {
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+}
+
+.Atile h2 {
+    text-align: center;
+    margin-bottom: 0%;
+}
+
+.Atile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 25%;
+}
+
+.imgt {
+    display: flex;
+    text-align: left;
+}
+
+.imgt2 {
+    display: flex;
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.Atext {
+    padding: 2%;
+}
+
+#signup {
+    width: 100%;
+    height: 45px;
+    color: beige;
+    text-align: center;
+    align-content: center;
+    background-color: #7b0b01;
+}
+
+/*---------------------------------------EVENT CONTENT-------------------------------------------*/
+
+#event-banner {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#event-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+    filter: brightness(0.5);
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 80%;
+}
+
+.banner-text h1 {
+    color: white;
+    font-size: 48px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.banner-text h2 {
+    color: white;
+    font-size: 36px;
+    text-shadow: 2px 2px 4px rgba(52, 52, 52, 0.5);
+}
+
+.event-card {
+    width: 90%;
+    max-width: 700px;
+    margin: 30px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(6, 6, 6, 0.1);
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+.image-container img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background-color: #fff;
+    display: block;
+    border-radius: 12px;
+}
+
+/* hover effects on desktop */
+.event-details-overlay {
+    background-color: rgba(25, 23, 23, 0.85);
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    display: none;
+}
+
+.image-container:hover .event-details-overlay {
+    opacity: 1;
+    display: block;
+    position: relative;
+}
+
+/* Mobile responsive */
+@media (max-width: 750px) {
+    .banner-text h1 {
+        font-size: 32px;
+    }
+
+    .banner-text h2 {
+        font-size: 24px;
+    }
+
+    /* Showing content in the mobile form */
+    .event-card {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .image-container {
+        margin-bottom: 10px;
+    }
+
+    .image-container img {
+        height: 180px;
+    }
+
+    .event-details-overlay {
+        position: static;
+        opacity: 1;
+        background-color: aliceblue;
+        color: black;
+        padding: 10px;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: block !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-text h1 {
+        font-size: 24px;
+    }
+
+    .banner-text h2 {
+        font-size: 18px;
+    }
+
+}
+
+/*---------------------------------------SPORTS CONTENT-------------------------------------------*/
+
+.gallery-title {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.volleyball-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1%;
+}
+
+.volleyball-gallery img {
+    width: 30%;
+    height: auto;
+    padding: 1%;
+}
+
+.divider {
+    border: none;
+    border-top: 3px dashed #7b0b01;
+    margin: 3rem auto;
+    width: 60%;
+}
+
+.soccer-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1%;
+}
+
+.soccer-gallery img {
+    width: 30%;
+    height: auto;
+    padding: 1%;
+}
+
+@media (max-width: 768px) {
+
+    .volleyball-gallery img,
+    .soccer-gallery img {
+        width: 90%;
+    }
+}
+
+/*---------------------------------------MERCH CONTENT-------------------------------------------*/
+
+#clothes {
+    width: 100%;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+#crewnecks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center
+}
+
+.merch-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+#cart {
+    visibility: hidden; 
+    padding: 1px; 
+    border-top: 1px solid #ccc; 
+    margin-top: 2px;
+}
+
+#cartItems {
+    list-style: none; 
+    padding: 0;
+}
+
+/*---------------------------------------ADMIN PAGE-------------------------------------------*/
+#adminC {
+    align-content: center;
+}
+
+#adminC h1 {
+    text-align: center;
+}
+
+#adminC h2 {
+    text-align: center;
+}
+
+#adminC ul {
+    text-align: center;
+    list-style: none;
+    padding: 0%;
+}
+
+#adminC table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#adminC tr:nth-child(even) {
+    background-color: rgba(123, 11, 1, .2);
+}
+
+#adminC ul a {
+    color: #7b0b01;
+    text-decoration: none;
+    font-size: larger;
+    padding: 0.5%;
+}
+
+#adminC table a {
+    color: #7b0b01;
+    text-decoration: none;
+    font-size: medium;
+    padding: 1%;
+}
+
+#adminC ul li {
+    margin: 2%;
+}
+
+#adminC button {
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: beige;
+    background-color: #7b0b01;
+    font-size: large;
+    width: 200px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+
+/*---------------------------------------FOOTER CONTENT-------------------------------------------*/
+
+#footer {
+    color: beige;
+    background-color: black;
+    bottom: 0%;
+    width: 100%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#footer a {
+    color: beige;
+    text-decoration: none;
+}
+
+.instagram-logo {
+    width: 50px;
+    height: auto;
+    margin-top: 10px;
+}
+
+.instagram-logo:hover {
+    transform: scale(1.2);
+}

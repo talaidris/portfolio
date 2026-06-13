@@ -9,9 +9,9 @@
 
 
 <body>
-  <div class="full-page-overlay">
+  <!-- <div class="full-page-overlay">
     <img src="images/UC.png" alt="Overlay graphic">
-  </div>
+  </div> -->
   <div id="container">
 
     <div id="contact">
@@ -32,8 +32,11 @@
         <div id="top">
           <div id="notch"></div>
           <div id="clockdisplay" class="clock" onload="showTime()"></div>
-          <img src="images/Levels.png" alt="levels" style="width: 75px; position: sticky; transform: translateX(235px) translateY(-35px);">
+          <img src="images/Levels.png" alt="levels"
+            style="width: 75px; position: sticky; transform: translateX(235px) translateY(-35px);">
         </div>
+
+
         <div id="app-grid">
           <div class="app" id="aboutme">
             <img src="images/safari.png" alt="About Me">
@@ -45,26 +48,27 @@
             <span>Projects</span>
           </div>
 
-          <div class="app" id="journalpage">
-            <img src="images/notes.png" alt="Journal">
-            <span>Journal</span>
+          <div class="app" id="comingsoon">
+            <img src="images/settings.png" alt="Coming Coon">
+            <span>Coming Soon</span>
           </div>
 
           <div class="app" id="comingsoon">
             <img src="images/settings.png" alt="Coming Coon">
             <span>Coming Soon</span>
           </div>
+
           <div class="app" id="comingsoon">
             <img src="images/settings.png" alt="Coming Coon">
             <span>Coming Soon</span>
-          </div>          <div class="app" id="comingsoon">
+          </div>
+
+          <div class="app" id="comingsoon">
             <img src="images/settings.png" alt="Coming Coon">
             <span>Coming Soon</span>
-          </div>          <div class="app" id="comingsoon">
-            <img src="images/settings.png" alt="Coming Coon">
-            <span>Coming Soon</span>
+          </div>
         </div>
-        </div>
+
 
         <div id="aboutC">
           <div class="atile">
@@ -126,15 +130,41 @@
           </div>
         </div>
 
-        <div id="projectsC">
-          <!-- TODO: add in projects -->
-          <h3><a target="_blank" href="works/js_assignment/index.html">Tic Tac Toe Game</a></h3>
-          <h3><a target="_blank" href="works/draw/index.html">Drawing Web App</a></h3>
-        </div>
 
-        <div id="journalC">
-          <!-- TODO: add in journal/ change to something different -->
-          <p>Coming Soon...</p>
+        <div id="projectsC">
+          <div class="project">
+            <a target="_blank" href="works/js_assignment/index.html">
+              <img src="images/placeholder.jpg" alt="placeholder">
+              <h3>Tic Tac Toe Game</h3>
+              <p>A classic two-player tic-tac-toe game built with JavaScript. Play against a friend on the same device.
+              </p>
+            </a>
+          </div>
+
+          <div class="project">
+            <a target="_blank" href="works/draw/index.html">
+              <img src="images/placeholder.jpg" alt="placeholder">
+              <h3>Drawing Web App</h3>
+              <p>A canvas-based drawing tool that lets you sketch with your mouse or finger.</p>
+            </a>
+          </div>
+
+          <div class="project">
+            <a target="_blank" href="works/MISA/index.html">
+              <img src="images/placeholder.jpg" alt="placeholder">
+              <h3>Mock website for MISA</h3>
+              <p>A sample informational site designed for the McMaster Ismaili Student Association. (Note: events page
+                is not connected to a backend.)</p>
+            </a>
+          </div>
+
+          <div class="project">
+            <a target="_blank" href="https://github.com/talaidris/Movie-Recommendation-System">
+              <img src="images/placeholder.jpg" alt="placeholder">
+              <h3>Movie Reccomendation System</h3>
+              <p>A Java-based recommendation engine that suggests movies based on user preferences.</p>
+            </a>
+          </div>
         </div>
 
       </div>
@@ -144,7 +174,7 @@
   </div>
 
   <script src="js/script.js"></script>
-  
+
 </body>
 
 </html>

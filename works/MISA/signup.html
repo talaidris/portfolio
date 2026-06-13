@@ -1,0 +1,60 @@
+<!--
+Name: Tala Idris
+Student Number:400571015
+Date created: March 26 2025
+Description: MISA Signup Form
+-->
+
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Signup</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/emailCheck.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="headerRest">
+            <a id="logo" href="index.html"><img id="logo" src="images/logo.png" style="width: 100px;"></a>
+            <div id="headtext">
+                <a href="index.html" id="homelink">
+                    <h1>MISA</h1>
+                    <p>McMaster Ismaili Student Association</p>
+                </a>
+            </div>
+            <div id="navbar">
+                <a href="about.html" class="link">About Us</a>
+                <a href="events.php" class="link">Events</a>
+                <a href="sports.html" class="link">Sports</a>
+                <a href="merch.html" class="link">Merch</a>
+                <a href="admin.html" class="link">admin login</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <form id="signupForm" action="server/signup.php" method="POST">
+                <h5>Name:</h5>
+                <input type="text" required name="name">
+                <br>
+                <h5>Email:</h5>
+                <input type="email" id="email" name="email" required>
+                <div id="emailWarning"></div>
+                <br>
+                <h5>Role:</h5>
+                <select name="role">
+                    <option>general member</option>
+                    <option>executive position</option>
+                </select>
+                <input type="submit" class="submit-button">
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

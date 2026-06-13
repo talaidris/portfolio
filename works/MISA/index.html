@@ -1,0 +1,130 @@
+<!--
+Name: Kanza Alam
+Student Number: 400528885
+Date created: March 26 2025
+Description: MISA homepage (index page). This HTML file contains all the basic and introductory information
+             about MISA such as location, times, and what MISA is about.
+-->
+
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="headerMain">
+            <div id="logo-container">
+                <canvas id="animationCanvas"></canvas>
+            </div>
+            <script src="js/logoAnimation.js"></script>
+            <div id="headtext">
+                <a href="index.html" id="homelink">
+                    <h1>MISA</h1>
+                    <p>McMaster Ismaili Student Association</p>
+                </a>
+            </div>
+            <div id="navbar">
+                <a href="about.html" class="link">About Us</a>
+                <a href="events.php" class="link">Events</a>
+                <a href="sports.html" class="link">Sports</a>
+                <a href="merch.html" class="link">Merch</a>
+                <a href="admin.html" class="link">admin login</a>
+            </div>
+        </div>
+
+        <div id="location">
+            <p>Health Science Building Room 4H1 : Monday-Thursday 6:30pm</p>
+        </div>
+
+        <div id="intro">
+            <img id="banner" src="images/bannerIntro.png">
+            <h1>Welcome to McMaster Ismaili Student Association!</h1>
+        </div>
+
+        <div id="Icontent">
+            <h2>What is Our Goal?</h2>
+            <p>Our mission is to connect Ismaili students at McMaster University, create a supportive community, and
+                promote both personal and collective growth through mentorship, sports, and wellness initiatives.</p>
+            <img id="skitsNightImg" src="images/skitsNight2025.jpg">
+        </div>
+
+        <div id="IAbout">
+            <h2>Welcome to MISA — where campus life meets community! 🌟</h2>
+
+            <button class="accordion">
+                Prayers 📣
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="panel">
+                <p>We host prayers Monday–Thursday and weekends (weekend location varies, but we’ll always update you!).
+                </p>
+            </div>
+
+            <button class="accordion">
+                Friday Jamat Khane 🚗
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="panel">
+                <p>Need a ride to Hamilton Jamat Khane? Just ask — we’ll help you get there!</p>
+            </div>
+
+            <button class="accordion">
+                Stay Connected 📱
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="panel">
+                <p>DM us on Instagram to join our MISA WhatsApp group chat!</p>
+            </div>
+
+            <button class="accordion">
+                Mentorship 🎓
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="panel">
+                <p>Frosh students can sign up for a mentor to help guide them through the year (and have fun!)</p>
+            </div>
+
+            <button class="accordion">
+                Mental Health 💛
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="panel">
+                <p>Our Mental Health Exec plans Mindfulness Days after Campus Jamat Khane to help you recharge.</p>
+            </div>
+
+            <button class="accordion">
+                Sports ⚽🏐
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="panel">
+                <p>Join our soccer and volleyball intramural teams! No experience needed — everyone’s welcome!</p>
+            </div>
+
+            <button class="accordion">
+                Events 🎭
+                <span class="arrow">&#9660;</span>
+            </button>
+            <div class="panel">
+                <p>We host events all year! Biggest one: Skits Night! You don't want to miss it!</p>
+            </div>
+        </div>
+
+        <div id="footer">
+            <a href="https://www.instagram.com/misa.masi/" target="_blank">
+                <img class="instagram-logo" src="images/instagramLogo.png" alt="Instagram">
+            </a>
+            <p>&copy; MISA, McMaster University, 2025</p>
+        </div>
+    </div>
+
+    <script src="js/accordion.js"></script>
+</body>
+
+</html>

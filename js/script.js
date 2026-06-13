@@ -47,42 +47,30 @@ acon.style.display = "none";
 let pcon = document.getElementById("projectsC");
 pcon.style.display = "none";
 
-let jcon = document.getElementById("journalC");
-jcon.style.display = "none";
-
 
 // UNCOMMENT LATER!!
 
+about.addEventListener("click", function (event) {
+  acon.style.display = "block";
+  appgrid.style.display = "none";
 
-// about.addEventListener("click", function (event) {
-//   acon.style.display = "block";
-//   appgrid.style.display = "none";
+  screen.style.background = "gray";
+});
 
-//   screen.style.background = "gray"
-// });
+projects.addEventListener("click", function (event) {
+  pcon.style.display = "block"
+  appgrid.style.display = "none";
 
-// projects.addEventListener("click", function (event) {
-//   pcon.style.display = "block"
-//   appgrid.style.display = "none";
+  screen.style.background = "#4e2f63";
+});
 
-//   screen.style.background = "pink"
-// });
+homeB.addEventListener("click", function (event) {
+  acon.style.display = "none";
+  pcon.style.display = "none";
+  appgrid.style.display = "grid";
 
-// journal.addEventListener("click", function (event) {
-//   jcon.style.display = "block"
-//   appgrid.style.display = "none";
-
-//   screen.style.background = "pink"
-// });
-
-// homeB.addEventListener("click", function (event) {
-//   acon.style.display = "none";
-//   pcon.style.display = "none";
-//   jcon.style.display = "none";
-//   appgrid.style.display = "grid";
-
-//   screen.style.background = "";
-// });
+  screen.style.background = "";
+});
 
 
 
