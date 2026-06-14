@@ -1,13 +1,9 @@
-// ---------- Messages App Logic (separate file) ----------
 const STORAGE_KEY = "messagesAppData";
 const USER_EMAIL_KEY = "userEmail";
 
-// ---------- Message storage & display ----------
 function loadMessages() {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-        return JSON.parse(stored);
-    }
+    if (stored) return JSON.parse(stored);
     return [{
         id: Date.now(),
         text: "Hi, I'm Tala! Send me a message and I'll get back to you as soon as possible :)",
@@ -21,12 +17,12 @@ function saveMessages(messages) {
 }
 
 function displayMessages(messages) {
-    const chatMessagesDiv = document.getElementById("chatMessages");
-    if (!chatMessagesDiv) return;
-    chatMessagesDiv.innerHTML = "";
+    const chatDiv = document.getElementById("chatMessages");
+    if (!chatDiv) return;
+    chatDiv.innerHTML = "";
     messages.forEach(msg => {
-        const messageDiv = document.createElement("div");
-        messageDiv.className = `message ${msg.sender === "user" ? "sent" : "received"}`;
+        const msgDiv = document.createElement("div");
+        msgDiv.className = `message ${msg.sender === "user" ? "sent" : "received"}`;
         const bubble = document.createElement("div");
         bubble.className = "bubble";
         bubble.innerText = msg.text;
@@ -34,19 +30,18 @@ function displayMessages(messages) {
         timeSpan.className = "timestamp";
         const date = new Date(msg.timestamp);
         timeSpan.innerText = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        messageDiv.appendChild(bubble);
-        messageDiv.appendChild(timeSpan);
-        chatMessagesDiv.appendChild(messageDiv);
+        msgDiv.appendChild(bubble);
+        msgDiv.appendChild(timeSpan);
+        chatDiv.appendChild(msgDiv);
     });
-    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    chatDiv.scrollTop = chatDiv.scrollHeight;
 }
 
 function loadAndDisplayMessages() {
-    const messages = loadMessages();
-    displayMessages(messages);
+    displayMessages(loadMessages());
 }
 
-function addMessage(text, sender) {
+function addMessage(text, sender, skipSave = false) {
     const messages = loadMessages();
     const newMessage = {
         id: Date.now(),
@@ -54,106 +49,110 @@ function addMessage(text, sender) {
         sender: sender,
         timestamp: new Date().toISOString()
     };
-    messages.push(newMessage);
-    saveMessages(messages);
+    if (!skipSave) {
+        messages.push(newMessage);
+        saveMessages(messages);
+    }
     displayMessages(messages);
+
+    if (sender === 'user') {
+        const lastBubble = document.querySelector('.message.sent:last-child .bubble');
+        if (lastBubble) {
+            lastBubble.classList.add('haptic-pulse');
+            setTimeout(() => lastBubble.classList.remove('haptic-pulse'), 200);
+            const tick = document.createElement('span');
+            tick.className = 'delivered-tick';
+            tick.innerText = '✓✓';
+            lastBubble.appendChild(tick);
+            setTimeout(() => tick.remove(), 800);
+        }
+    }
     return newMessage;
 }
 
-// ---------- Custom Email Modal ----------
+function showTypingIndicator() {
+    const chatDiv = document.getElementById("chatMessages");
+    if (!chatDiv) return;
+    const existing = document.querySelector('.typing-indicator');
+    if (existing) existing.remove();
+    const indicator = document.createElement('div');
+    indicator.className = 'typing-indicator';
+    indicator.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+    chatDiv.appendChild(indicator);
+    chatDiv.scrollTop = chatDiv.scrollHeight;
+}
+
+function hideTypingIndicator() {
+    const existing = document.querySelector('.typing-indicator');
+    if (existing) existing.remove();
+}
+
 function showEmailModal() {
     const modal = document.getElementById('emailModal');
     const emailInput = document.getElementById('modalEmailInput');
     const errorDiv = document.getElementById('modalError');
     const submitBtn = document.getElementById('modalSubmitBtn');
     const cancelBtn = document.getElementById('modalCancelBtn');
-
-    if (!modal) return Promise.reject('Modal element not found');
-
-    // Clear previous state
+    if (!modal) return Promise.reject('Modal not found');
     emailInput.value = '';
     errorDiv.innerText = '';
     modal.style.display = 'flex';
     emailInput.focus();
-
     return new Promise((resolve) => {
         const onSubmit = () => {
             const email = emailInput.value.trim();
-            if (!email) {
-                errorDiv.innerText = 'Email address is required.';
-                return;
-            }
-            if (!email.includes('@') || !email.includes('.')) {
-                errorDiv.innerText = 'Enter a valid email (e.g., name@example.com).';
-                return;
-            }
-            // Valid email
+            if (!email) { errorDiv.innerText = 'Email required.'; return; }
+            if (!email.includes('@') || !email.includes('.')) { errorDiv.innerText = 'Invalid email.'; return; }
             modal.style.display = 'none';
             localStorage.setItem(USER_EMAIL_KEY, email);
             resolve(email);
             cleanup();
         };
-
         const onCancel = () => {
             modal.style.display = 'none';
-            errorDiv.innerText = '';
-            resolve(null);   // user cancelled
+            resolve(null);
             cleanup();
         };
-
-        const keyHandler = (e) => {
-            if (e.key === 'Enter') onSubmit();
-        };
-
+        const keyHandler = (e) => { if (e.key === 'Enter') onSubmit(); };
         const cleanup = () => {
             submitBtn.removeEventListener('click', onSubmit);
             cancelBtn.removeEventListener('click', onCancel);
             emailInput.removeEventListener('keypress', keyHandler);
         };
-
         submitBtn.addEventListener('click', onSubmit);
         cancelBtn.addEventListener('click', onCancel);
         emailInput.addEventListener('keypress', keyHandler);
     });
 }
 
-// Get user email from localStorage or show modal. Returns null if cancelled.
 async function getUserEmail() {
     let email = localStorage.getItem(USER_EMAIL_KEY);
     if (email) return email;
-    const enteredEmail = await showEmailModal();
-    return enteredEmail; // could be null
+    return await showEmailModal();
 }
 
-// ---------- Send message to Formspree ----------
-async function sendMessageToFormspree(userMessageText, userEmail) {
+async function sendMessageToFormspree(text, userEmail) {
     const formData = new FormData();
     formData.append("email", userEmail);
-    formData.append("message", userMessageText);
-
+    formData.append("message", text);
     try {
-        const response = await fetch("https://formspree.io/f/mgobpyvv", {
+        const res = await fetch("https://formspree.io/f/mgobpyvv", {
             method: "POST",
             body: formData,
             headers: { 'Accept': 'application/json' }
         });
-
-        if (response.ok) {
-            addMessage(
-                "Thanks for reaching out! I've received your message and will get back to you soon.",
-                "system"
-            );
+        if (res.ok) {
+            return true;
         } else {
-            console.error("Formspree error:", await response.text());
             addMessage("Sorry, there was an issue sending your message. Please try again later.", "system");
+            return false;
         }
-    } catch (error) {
-        console.error("Network error:", error);
+    } catch (err) {
         addMessage("Network error. Could not send your message.", "system");
+        return false;
     }
 }
 
-// ---------- Set up send button & keyboard (only once) ----------
 let isSendingSetup = false;
 
 function setupMessageSending() {
@@ -167,19 +166,23 @@ function setupMessageSending() {
     const sendCurrentMessage = async () => {
         const text = messageInput.value.trim();
         if (text === "") return;
-
-        // Ask for email if not already stored (cancellable)
         const userEmail = await getUserEmail();
         if (!userEmail) {
             addMessage("Please provide an email address to send a message.", "system");
             return;
         }
-
-        // Add user message to chat and storage
         addMessage(text, "user");
         messageInput.value = "";
-        // Send to Formspree (auto‑reply added on success)
-        sendMessageToFormspree(text, userEmail);
+
+        showTypingIndicator();
+        const success = await sendMessageToFormspree(text, userEmail);
+
+        setTimeout(() => {
+            hideTypingIndicator();
+            if (success) {
+                addMessage("Thanks for reaching out! I've received your message and will get back to you soon.", "system");
+            }
+        }, 1500);
     };
 
     sendBtn.addEventListener("click", sendCurrentMessage);
@@ -191,7 +194,6 @@ function setupMessageSending() {
     });
 }
 
-// ---------- Public initializer (called when Messages app opens) ----------
 window.initMessagesApp = function () {
     loadAndDisplayMessages();
     setupMessageSending();

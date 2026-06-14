@@ -25,14 +25,11 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 
-
 <body>
   <div id="container">
-
     <div id="contact">
       <h1>Tala Idris</h1>
       <p>computer science student at mcmaster university</p>
-
       <div class="contact-info">
         <a href="https://www.linkedin.com/in/tala-idris-3283202b6/" target="_blank"><img src="images/linkedin.png"
             alt="LinkedIn" style="width: 50px;"></a>
@@ -45,46 +42,47 @@
       <div id="device-screen">
         <div id="top">
           <div id="notch"></div>
-          <div id="clockdisplay" class="clock" onload="showTime()"></div>
+          <div id="clockdisplay" class="clock"></div>
           <img src="images/Levels.png" alt="levels"
             style="width: 75px; position: sticky; transform: translateX(235px) translateY(-35px);">
         </div>
 
-
         <div id="app-grid">
           <div class="app" id="experienceApp">
-            <img src="images/safari.png" alt="Experience">
-            <span>Experience</span>
+            <img src="images/safari.png" alt="experience">
+            <span>experience</span>
           </div>
-
           <div class="app" id="educationApp">
-            <img src="images/edu.jpg" alt="Education">
-            <span>Education</span>
+            <img src="images/edu.jpg" alt="education">
+            <span>education</span>
           </div>
-
           <div class="app" id="skillsApp">
-            <img src="images/settings.png" alt="Skills">
-            <span>Skills</span>
+            <img src="images/settings.png" alt="skills">
+            <span>skills</span>
           </div>
-
           <div class="app" id="projectspage">
-            <img src="images/files.png" alt="Projects">
-            <span>Projects</span>
+            <img src="images/files.png" alt="projects">
+            <span>projects</span>
           </div>
-
           <div class="app" id="messagesApp">
-            <img src="images/messages.jpg" alt="Messages">
-            <span>Messages</span>
+            <img src="images/messages.jpg" alt="messages">
+            <span>messages</span>
           </div>
-
           <div class="app" id="comingsoon">
-            <img src="images/photos.jpg" alt="Coming Coon">
-            <span>Coming Soon</span>
+            <img src="images/photos.jpg" alt="coming soon">
+            <span>coming soon</span>
           </div>
-
-
+          <div class="app" id="comingsoon">
+            <img src="images/photos.jpg" alt="coming soon">
+            <span>coming soon</span>
+          </div>
+          <div class="app" id="comingsoon">
+            <img src="images/photos.jpg" alt="coming soon">
+            <span>coming soon</span>
+          </div>
         </div>
 
+        <!-- Experience Content -->
         <div id="experienceC">
           <div class="resume-card">
             <h2>Tommy Hilfiger – Sales Associate</h2>
@@ -128,6 +126,7 @@
           </div>
         </div>
 
+        <!-- Education Content -->
         <div id="educationC">
           <div class="resume-card">
             <h2>McMaster University</h2>
@@ -148,6 +147,7 @@
           </div>
         </div>
 
+        <!-- Skills Content -->
         <div id="skillsC">
           <div class="resume-card">
             <h2>Soft Skills</h2>
@@ -174,6 +174,7 @@
           </div>
         </div>
 
+        <!-- Projects Content -->
         <div id="projectsC">
           <div class="project">
             <a target="_blank" href="https://github.com/talaidris/Movie-Recommendation-System">
@@ -182,7 +183,6 @@
               <p>A Java-based recommendation engine that suggests movies based on user preferences.</p>
             </a>
           </div>
-
           <div class="project">
             <a target="_blank" href="works/MISA/index.html">
               <img src="images/misa.png" alt="placeholder">
@@ -191,7 +191,6 @@
                 is not connected to a backend.)</p>
             </a>
           </div>
-
           <div class="project">
             <a target="_blank" href="works/draw/index.html">
               <img src="images/draw.png" alt="placeholder">
@@ -199,7 +198,6 @@
               <p>A canvas-based drawing tool that lets you sketch with your mouse or finger.</p>
             </a>
           </div>
-
           <div class="project">
             <a target="_blank" href="works/js_assignment/index.html">
               <img src="images/tictactoe.png" alt="placeholder">
@@ -210,6 +208,7 @@
           </div>
         </div>
 
+        <!-- Messages App -->
         <div id="messagesC">
           <div class="chat-header">
             <div class="chat-header-left">
@@ -218,7 +217,7 @@
             </div>
           </div>
           <div class="chat-messages" id="chatMessages">
-            <!-- Messages will be loaded here dynamically -->
+            <!-- Messages loaded dynamically -->
           </div>
           <div class="chat-input-container">
             <textarea id="messageInput" placeholder="Message" rows="1"></textarea>
@@ -226,10 +225,11 @@
           </div>
         </div>
 
+        <!-- Email Modal -->
         <div id="emailModal" class="modal-overlay" style="display: none;">
           <div class="modal-container">
             <div class="modal-title">Contact Information</div>
-            <div class="modal-message">Please enter your email address so I can respond to you:</div>
+            <div class="modal-message">Please enter your email address so I can respond to you</div>
             <input type="email" id="modalEmailInput" class="modal-input" placeholder="your@email.com"
               autocomplete="email">
             <div id="modalError" class="modal-error"></div>
@@ -240,15 +240,15 @@
           </div>
         </div>
 
-      </div>
-
+      </div> <!-- end device-screen -->
       <div id="home"></div>
-    </div>
-  </div>
+    </div> <!-- end phone -->
+  </div> <!-- end container -->
 
-  <script src="js/script.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/storygraph-widget.js" defer></script>
+  <script src="js/lastfm-widget.js" defer></script>
   <script src="js/messages.js" defer></script>
-
 </body>
 
 </html>
