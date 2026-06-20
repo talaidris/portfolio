@@ -561,3 +561,49 @@ calcButtons.forEach(function (btn) {
     }
   });
 });
+
+// ---------- Custom Cursor (inside phone screen) ----------
+(function () {
+  var phone = document.getElementById('phone');
+  if (!phone) return;
+
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+  // Create cursor element
+  var cursor = document.createElement('div');
+  cursor.id = 'customCursor';
+  cursor.style.position = 'absolute';
+  cursor.style.width = '20px';
+  cursor.style.height = '20px';
+  cursor.style.borderRadius = '50%';
+  cursor.style.background = 'rgba(255, 255, 255, 0.5)';
+  cursor.style.pointerEvents = 'none';
+  cursor.style.transform = 'translate(-50%, -50%)';
+  cursor.style.zIndex = '9999';
+  cursor.style.transition = 'width 0.15s, height 0.15s, background 0.15s';
+  cursor.style.display = 'none';
+  phone.style.cursor = 'none';
+  phone.appendChild(cursor);
+
+  var isInside = false;
+
+  function moveCursor(e) {
+    var rect = phone.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+    if (!isInside) {
+      cursor.style.display = 'block';
+      isInside = true;
+    }
+  }
+
+  function hideCursor() {
+    cursor.style.display = 'none';
+    isInside = false;
+  }
+
+  phone.addEventListener('mousemove', moveCursor);
+  phone.addEventListener('mouseleave', hideCursor);
+})();
