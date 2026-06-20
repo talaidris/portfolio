@@ -6,22 +6,22 @@
   <title>Tala Idris Portfolio</title>
   <link rel="stylesheet" href="css/style.css">
 
-  <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-  <link rel="manifest" href="/favicons/manifest.json">
+  <link rel="apple-touch-icon" sizes="57x57" href="favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+  <link rel="manifest" href="favicons/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="favicons/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 </head>
 
@@ -40,6 +40,38 @@
 
     <div id="phone">
       <div id="device-screen">
+
+        <!-- Lock Screen -->
+        <div id="lockScreen" class="lock-screen">
+          <div class="lock-screen-top">
+            <div class="lock-date" id="lockDate"></div>
+            <div class="lock-time" id="lockTime"></div>
+          </div>
+          <div class="lock-screen-middle" id="lockInitMessage">
+            <div class="lock-icon">🔒</div>
+            <div class="lock-subtitle">Press anywhere to unlock</div>
+          </div>
+          <div class="lock-screen-passcode" id="lockPasscodeArea" style="display: none;">
+            <div class="passcode-dots" id="passcodeDots">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <div class="lock-subtitle">Enter Passcode</div>
+            <div id="passcodeHint" class="passcode-hint" style="display: none;"></div>
+          </div>
+          <div class="lock-screen-bottom">
+            <div class="number-pad" id="numberPad" style="display: none;">
+              <div class="num-row"><button data-num="1">1</button><button data-num="2">2</button><button
+                  data-num="3">3</button></div>
+              <div class="num-row"><button data-num="4">4</button><button data-num="5">5</button><button
+                  data-num="6">6</button></div>
+              <div class="num-row"><button data-num="7">7</button><button data-num="8">8</button><button
+                  data-num="9">9</button></div>
+              <div class="num-row"><button class="empty"></button><button data-num="0">0</button><button
+                  class="delete-btn" id="deleteDigit">⌫</button></div>
+            </div>
+          </div>
+        </div>
+
         <div id="top">
           <div id="notch"></div>
           <div id="clockdisplay" class="clock"></div>
@@ -47,42 +79,25 @@
             style="width: 75px; position: sticky; transform: translateX(235px) translateY(-35px);">
         </div>
 
+        <!-- App Grid -->
         <div id="app-grid">
-          <div class="app" id="experienceApp">
-            <img src="images/safari.png" alt="experience">
-            <span>experience</span>
+          <div class="app" id="experienceApp"><img src="images/safari.png" alt="experience"><span>experience</span>
           </div>
-          <div class="app" id="educationApp">
-            <img src="images/edu.jpg" alt="education">
-            <span>education</span>
+          <div class="app" id="educationApp"><img src="images/edu.jpg" alt="education"><span>education</span></div>
+          <div class="app" id="skillsApp"><img src="images/settings.png" alt="skills"><span>skills</span></div>
+          <div class="app" id="projectspage"><img src="images/files.png" alt="projects"><span>projects</span></div>
+          <div class="app" id="messagesApp"><img src="images/messages.jpg" alt="messages"><span>messages</span></div>
+          <div class="app" id="musicApp"><img src="images/music.jpg" alt="music"><span>music</span></div>
+          <div class="app" id="photosApp"><img src="images/photos.jpg" alt="photos"><span>photos</span></div>
+          <div class="app" id="notesApp"><img src="images/notes.jpg" alt="notes"><span>notes</span></div>
+          <div class="app" id="weatherApp"><img src="images/weather.jpg" alt="weather"><span>weather</span></div>
+          <div class="app" id="calculatorApp"><img src="images/calc.jpg" alt="calculator"><span>calculator</span>
           </div>
-          <div class="app" id="skillsApp">
-            <img src="images/settings.png" alt="skills">
-            <span>skills</span>
-          </div>
-          <div class="app" id="projectspage">
-            <img src="images/files.png" alt="projects">
-            <span>projects</span>
-          </div>
-          <div class="app" id="messagesApp">
-            <img src="images/messages.jpg" alt="messages">
-            <span>messages</span>
-          </div>
-          <div class="app" id="comingsoon">
-            <img src="images/photos.jpg" alt="coming soon">
-            <span>coming soon</span>
-          </div>
-          <div class="app" id="comingsoon">
-            <img src="images/photos.jpg" alt="coming soon">
-            <span>coming soon</span>
-          </div>
-          <div class="app" id="comingsoon">
-            <img src="images/photos.jpg" alt="coming soon">
-            <span>coming soon</span>
-          </div>
+          <div class="app" id="todoApp"><img src="images/todo.jpg" alt="todo"><span>todo</span></div>
+          <div class="app" id="booksApp"><img src="images/books.jpg" alt="books"><span>books</span></div>
         </div>
 
-        <!-- Experience Content -->
+        <!-- Experience -->
         <div id="experienceC">
           <div class="resume-card">
             <h2>Tommy Hilfiger – Sales Associate</h2>
@@ -126,7 +141,7 @@
           </div>
         </div>
 
-        <!-- Education Content -->
+        <!-- Education -->
         <div id="educationC">
           <div class="resume-card">
             <h2>McMaster University</h2>
@@ -147,7 +162,7 @@
           </div>
         </div>
 
-        <!-- Skills Content -->
+        <!-- Skills -->
         <div id="skillsC">
           <div class="resume-card">
             <h2>Soft Skills</h2>
@@ -166,49 +181,34 @@
               <li>Python, Java, Haskell, C</li>
             </ul>
           </div>
-          <div class="resume-card">
-            <h2>Languages</h2>
-            <ul>
-              <li>Fluent in Arabic</li>
-            </ul>
-          </div>
         </div>
 
-        <!-- Projects Content -->
+        <!-- Projects -->
         <div id="projectsC">
           <div class="project">
+            <a target="_blank" href="https://mcmasteraiaa.ca">
+              <img src="images/aiaalogo.png" alt="McMaster AIAA logo">
+              <h3>McMaster AIAA website</h3>
+              <p>An informational site designed for the McMaster AIAA branch.</p>
+            </a>
+          </div>
+          <div class="project">
             <a target="_blank" href="https://github.com/talaidris/Movie-Recommendation-System">
-              <img src="images/movies.jpg" alt="placeholder">
+              <img src="images/movies.jpg" alt="Movies image">
               <h3>Movie Recommendation System</h3>
               <p>A Java-based recommendation engine that suggests movies based on user preferences.</p>
             </a>
           </div>
           <div class="project">
-            <a target="_blank" href="works/MISA/index.html">
-              <img src="images/misa.png" alt="placeholder">
-              <h3>Mock website for MISA</h3>
-              <p>A sample informational site designed for the McMaster Ismaili Student Association. (Note: events page
-                is not connected to a backend.)</p>
-            </a>
-          </div>
-          <div class="project">
             <a target="_blank" href="works/draw/index.html">
-              <img src="images/draw.png" alt="placeholder">
+              <img src="images/draw.png" alt="canvas image">
               <h3>Drawing Web App</h3>
-              <p>A canvas-based drawing tool that lets you sketch with your mouse or finger.</p>
-            </a>
-          </div>
-          <div class="project">
-            <a target="_blank" href="works/js_assignment/index.html">
-              <img src="images/tictactoe.png" alt="placeholder">
-              <h3>Tic Tac Toe Game</h3>
-              <p>A classic two-player tic-tac-toe game built with JavaScript. Play against a friend on the same device.
-              </p>
+              <p>A canvas-based drawing tool that lets you sketch with your mouse. (not mobile friendly)</p>
             </a>
           </div>
         </div>
 
-        <!-- Messages App -->
+        <!-- Messages -->
         <div id="messagesC">
           <div class="chat-header">
             <div class="chat-header-left">
@@ -216,12 +216,143 @@
               <span class="chat-name">Tala Idris</span>
             </div>
           </div>
-          <div class="chat-messages" id="chatMessages">
-            <!-- Messages loaded dynamically -->
-          </div>
+          <div class="chat-messages" id="chatMessages"></div>
           <div class="chat-input-container">
             <textarea id="messageInput" placeholder="Message" rows="1"></textarea>
             <button id="sendMessageBtn">Send</button>
+          </div>
+        </div>
+
+        <!-- Music App -->
+        <div id="musicAppC">
+          <div class="app-header"><span class="app-header-title">Music</span></div>
+          <div class="music-player">
+            <div class="music-track-display">
+              <div class="music-artwork" id="musicArtwork">🎵</div>
+              <div class="music-track-details">
+                <div class="music-current-track" id="musicTrackName">No track loaded</div>
+                <div class="music-current-artist" id="musicArtistName">-</div>
+              </div>
+            </div>
+            <div class="music-progress">
+              <span class="music-time-current" id="musicCurrentTime">0:00</span>
+              <div class="music-progress-bar">
+                <div class="music-progress-fill" id="musicProgressFill"></div>
+              </div>
+              <span class="music-time-total" id="musicTotalTime">0:00</span>
+            </div>
+            <div class="music-controls-large">
+              <button class="music-btn-large" id="musicPrevBtn">⏮</button>
+              <button class="music-btn-large music-play-btn-large" id="musicPlayBtn">▶</button>
+              <button class="music-btn-large" id="musicNextBtn">⏭</button>
+            </div>
+            <div class="music-volume-controls">
+              <button class="music-vol-btn" id="musicVolDownBtn">🔉</button>
+              <span class="music-volume-text" id="musicVolumeText">70%</span>
+              <button class="music-vol-btn" id="musicVolUpBtn">🔊</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photos -->
+        <div id="photosAppC">
+          <div class="app-header"><span class="app-header-title">Photos</span></div>
+          <div class="photos-subtitle">crochet</div>
+          <div class="photos-grid" id="photosGrid"></div>
+        </div>
+
+        <!-- Photo Lightbox (inside phone screen) -->
+        <div id="photoLightbox" class="photo-lightbox" style="display: none;">
+          <div class="photo-lightbox-content">
+            <button id="photoLightboxClose" class="photo-lightbox-close">✕</button>
+            <img id="photoLightboxImg" src="" alt="Enlarged photo">
+            <div id="photoLightboxDesc" class="photo-lightbox-desc">Description</div>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div id="notesAppC">
+          <div class="app-header"><span class="app-header-title">Notes</span></div>
+          <div class="notes-editor">
+            <textarea id="notesTextarea" placeholder="Write your note here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Weather -->
+        <div id="weatherAppC">
+          <div class="app-header"><span class="app-header-title">Weather</span></div>
+          <div class="weather-display">
+            <div class="weather-icon" id="weatherIcon">☀️</div>
+            <div class="weather-temp" id="weatherTemp">--°C</div>
+            <div class="weather-condition" id="weatherCondition">Loading...</div>
+            <div class="weather-details">
+              <div class="weather-detail">💧 Humidity: <span id="weatherHumidity">--</span></div>
+              <div class="weather-detail">💨 Wind: <span id="weatherWind">--</span></div>
+            </div>
+            <button id="weatherRefreshBtn" class="weather-refresh-btn">Refresh</button>
+          </div>
+        </div>
+
+        <!-- Calculator -->
+        <div id="calculatorAppC">
+          <div class="app-header"><span class="app-header-title">Calculator</span></div>
+          <div class="calculator">
+            <div class="calc-display" id="calcDisplay">0</div>
+            <div class="calc-buttons">
+              <button class="calc-btn calc-clear" data-value="C">C</button>
+              <button class="calc-btn calc-clear" data-value="⌫">⌫</button>
+              <button class="calc-btn calc-operator" data-value="÷">÷</button>
+              <button class="calc-btn calc-operator" data-value="×">×</button>
+              <button class="calc-btn calc-number" data-value="7">7</button>
+              <button class="calc-btn calc-number" data-value="8">8</button>
+              <button class="calc-btn calc-number" data-value="9">9</button>
+              <button class="calc-btn calc-operator" data-value="−">−</button>
+              <button class="calc-btn calc-number" data-value="4">4</button>
+              <button class="calc-btn calc-number" data-value="5">5</button>
+              <button class="calc-btn calc-number" data-value="6">6</button>
+              <button class="calc-btn calc-operator" data-value="+">+</button>
+              <button class="calc-btn calc-number" data-value="1">1</button>
+              <button class="calc-btn calc-number" data-value="2">2</button>
+              <button class="calc-btn calc-number" data-value="3">3</button>
+              <div class="calc-placeholder"></div>
+              <button class="calc-btn calc-number calc-zero" data-value="0">0</button>
+              <button class="calc-btn calc-number" data-value=".">.</button>
+              <button class="calc-btn calc-equals" data-value="=">=</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Todo -->
+        <div id="todoAppC">
+          <div class="app-header"><span class="app-header-title">Todo List</span></div>
+          <div class="todo-container">
+            <div class="todo-input-row">
+              <input type="text" id="todoInput" class="todo-input" placeholder="Add a new task...">
+              <button id="todoAddBtn" class="todo-add-btn">+</button>
+            </div>
+            <div class="todo-filters">
+              <button class="todo-filter-btn active" data-filter="all">All</button>
+              <button class="todo-filter-btn" data-filter="active">Active</button>
+              <button class="todo-filter-btn" data-filter="completed">Completed</button>
+            </div>
+            <ul id="todoList" class="todo-list"></ul>
+            <div class="todo-footer">
+              <span id="todoCount">0 tasks</span>
+              <button id="todoClearBtn" class="todo-clear-btn">Clear Completed</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Books -->
+        <div id="booksAppC">
+          <div class="app-header"><span class="app-header-title">Books</span></div>
+          <div class="books-list" id="booksList"></div>
+          <div class="books-reader" id="booksReader" style="display:none;">
+            <div class="books-reader-header">
+              <button id="booksBackBtn" class="books-btn">← Back</button>
+              <span id="booksTitle" class="books-reader-title"></span>
+            </div>
+            <div class="books-content" id="booksContent"></div>
           </div>
         </div>
 
@@ -246,8 +377,11 @@
   </div> <!-- end container -->
 
   <script src="js/core.js"></script>
+  <script src="js/books.js" defer></script>
+  <script src="js/todo.js" defer></script>
   <script src="js/storygraph-widget.js" defer></script>
-  <script src="js/lastfm-widget.js" defer></script>
+  <script src="js/quotes-widget.js" defer></script>
+  <script src="js/music-widget.js" defer></script>
   <script src="js/messages.js" defer></script>
 </body>
 
