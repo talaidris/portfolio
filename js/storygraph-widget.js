@@ -1,9 +1,9 @@
 const STORYGRAPH_PROFILE_URL = 'https://app.thestorygraph.com/profile/talaidris';
 
 const CURRENT_BOOK = {
-    title: "Project Hail Mary",
-    author: "Andy Weir",
-    coverUrl: "https://cdn.thestorygraph.com/i6ymy7lixnjd92criaeph7gly11p"
+    title: "Infinite Jest",
+    author: "David Foster Wallace",
+    coverUrl: "https://cdn.thestorygraph.com/k33mx8ap8nk4anb8rzkb9xrjfz8z"
 };
 
 function createStoryGraphWidget() {
@@ -28,6 +28,7 @@ function createStoryGraphWidget() {
 
     widgetDiv.innerHTML = `
         <div class="widget-content">
+            <p style ="font-size:0.7rem">currently reading</p>
             <div class="book-cover">${coverHtml}</div>
             <div class="book-info">
                 <div class="book-title">${escapeHtml(CURRENT_BOOK.title)}</div>
