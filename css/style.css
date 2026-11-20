@@ -1775,7 +1775,11 @@ button.chip.active { background: #b794f6; border-color: #b794f6; color: #1a0f2a;
 .skill-detail span { font-size: 0.8rem; color: #ddd; line-height: 1.4; }
 .skill-group h3, .grp { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #c9b8e8; margin-bottom: 6px; }
 
-#projectsC { grid-template-columns: 1fr; }
+/* Rows must size to their content. Cards use overflow:hidden, which lets a fixed-height grid
+   squash them and clip the text. */
+#projectsC { grid-template-columns: 1fr; grid-auto-rows: max-content; align-content: start; }
+.proj-card { flex-shrink: 0; min-height: min-content; }
+.resume-card, .tl { flex-shrink: 0; }
 .proj-card { display: flex; flex-direction: column; overflow: hidden; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; backdrop-filter: blur(2px); transition: transform 0.2s ease, border-color 0.2s; }
 .proj-card:hover { transform: translateY(-3px); border-color: rgba(183, 148, 246, 0.7); }
 .proj-card img { width: 100%; height: 120px; object-fit: cover; }
