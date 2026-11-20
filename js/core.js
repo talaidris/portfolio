@@ -457,68 +457,55 @@ function loadNote() {
   if (!textarea) return;
   var saved = localStorage.getItem('userNote');
   if (saved) textarea.value = saved;
-  textarea.addEventListener('input', function () {
+  textarea.oninput = function () {
     localStorage.setItem('userNote', textarea.value);
-  });
+  };
 }
 
 // ---------- Weather ----------
+function weatherFromCode(code) {
+  if (code === 0) return ['☀️', 'Clear'];
+  if (code <= 3) return ['⛅', 'Partly cloudy'];
+  if (code === 45 || code === 48) return ['🌫️', 'Fog'];
+  if (code <= 57) return ['🌦️', 'Drizzle'];
+  if (code <= 67) return ['🌧️', 'Rain'];
+  if (code <= 77) return ['❄️', 'Snow'];
+  if (code <= 82) return ['🌧️', 'Showers'];
+  if (code <= 86) return ['🌨️', 'Snow showers'];
+  return ['⛈️', 'Thunderstorm'];
+}
+
 function fetchWeather() {
   var statusEl = document.getElementById('weatherCondition');
   if (statusEl) statusEl.textContent = 'Loading...';
 
-  if (!navigator.geolocation) {
-    if (statusEl) statusEl.textContent = 'Geolocation not supported';
-    return;
+  function load(lat, lon, label) {
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon +
+      '&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&wind_speed_unit=kmh&timezone=auto';
+    fetch(url)
+      .then(function (r) { if (!r.ok) throw new Error('Weather API error'); return r.json(); })
+      .then(function (data) {
+        var cur = data.current;
+        var wx = weatherFromCode(cur.weather_code);
+        document.getElementById('weatherIcon').textContent = wx[0];
+        document.getElementById('weatherTemp').textContent = Math.round(cur.temperature_2m) + '°C';
+        document.getElementById('weatherCondition').textContent = wx[1] + ' · ' + label;
+        document.getElementById('weatherHumidity').textContent = Math.round(cur.relative_humidity_2m) + '%';
+        document.getElementById('weatherWind').textContent = Math.round(cur.wind_speed_10m) + ' km/h';
+      })
+      .catch(function (err) {
+        console.error('Weather fetch error:', err);
+        if (statusEl) statusEl.textContent = 'Error loading weather';
+      });
   }
 
+  // Hamilton, ON is the fallback if location is blocked or unavailable.
+  function fallback() { load(43.2557, -79.8711, 'Hamilton, ON'); }
+  if (!navigator.geolocation) return fallback();
   navigator.geolocation.getCurrentPosition(
-    function (pos) {
-      var lat = pos.coords.latitude;
-      var lon = pos.coords.longitude;
-      var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current_weather=true&temperature_unit=celsius&windspeed_unit=kmh';
-
-      fetch(url)
-        .then(function (response) {
-          if (!response.ok) throw new Error('Weather API error');
-          return response.json();
-        })
-        .then(function (data) {
-          var weather = data.current_weather;
-          var temp = Math.round(weather.temperature);
-          var wind = Math.round(weather.windspeed);
-          var code = weather.weathercode;
-          var icon, condition;
-
-          if (code === 0) { icon = '☀️'; condition = 'Clear'; }
-          else if (code <= 3) { icon = '⛅'; condition = 'Partly cloudy'; }
-          else if (code <= 49) { icon = '🌫️'; condition = 'Fog'; }
-          else if (code <= 69) { icon = '🌧️'; condition = 'Rain'; }
-          else if (code <= 79) { icon = '❄️'; condition = 'Snow'; }
-          else if (code <= 99) { icon = '⛈️'; condition = 'Thunderstorm'; }
-          else { icon = '☁️'; condition = 'Cloudy'; }
-
-          var iconEl = document.getElementById('weatherIcon');
-          var tempEl = document.getElementById('weatherTemp');
-          var condEl = document.getElementById('weatherCondition');
-          var humidEl = document.getElementById('weatherHumidity');
-          var windEl = document.getElementById('weatherWind');
-
-          if (iconEl) iconEl.textContent = icon;
-          if (tempEl) tempEl.textContent = temp + '°C';
-          if (condEl) condEl.textContent = condition;
-          if (humidEl) humidEl.textContent = '--';
-          if (windEl) windEl.textContent = wind + ' km/h';
-        })
-        .catch(function (err) {
-          console.error('Weather fetch error:', err);
-          if (statusEl) statusEl.textContent = 'Error loading weather';
-        });
-    },
-    function (err) {
-      console.error('Geolocation error:', err);
-      if (statusEl) statusEl.textContent = 'Location unavailable';
-    }
+    function (pos) { load(pos.coords.latitude, pos.coords.longitude, 'your location'); },
+    fallback,
+    { timeout: 6000 }
   );
 }
 
@@ -548,7 +535,10 @@ calcButtons.forEach(function (btn) {
     } else if (val === '=') {
       try {
         var expr = calcExpression.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+        if (!/^[0-9+\-*/.() ]+$/.test(expr)) throw new Error('Invalid expression');
         var result = Function('"use strict"; return (' + expr + ')')();
+        if (!isFinite(result)) throw new Error('Math error');
+        result = +result.toPrecision(12);
         updateCalcDisplay(result);
         calcExpression = String(result);
       } catch (e) {

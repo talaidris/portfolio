@@ -1701,13 +1701,8 @@ body {
 /* Responsive */
 @media (min-width: 769px) {
   body {
-    overflow: hidden;
-    height: 100vh;
-  }
-
-  #container {
-    height: 100%;
-    max-height: 100vh;
+    overflow-y: auto;
+    min-height: 100vh;
   }
 }
 
@@ -1750,3 +1745,54 @@ body {
 #customCursor {
   cursor: default;
 }
+/* ==========================================================================
+   v2 components: timeline, chips, skills, project cards (phone + laptop)
+   ========================================================================== */
+.reveal { animation: revealUp 0.45s both; animation-delay: calc(var(--i, 0) * 70ms); }
+@keyframes revealUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.tl { position: relative; display: flex; flex-direction: column; gap: 16px; padding-left: 18px; }
+.tl::before { content: ""; position: absolute; left: 4px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(#b794f6aa, rgba(255, 255, 255, 0.08)); }
+.tl-card { position: relative; }
+.tl-card::before { content: ""; position: absolute; left: -18px; top: 22px; width: 10px; height: 10px; border-radius: 50%; background: #b794f6; box-shadow: 0 0 0 3px rgba(183, 148, 246, 0.25); }
+
+.card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+.card-head h2 { margin-bottom: 2px; }
+.org { font-size: 0.8rem; color: #c9b8e8; margin-bottom: 10px; }
+.sub-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #c9b8e8; margin-bottom: 4px; }
+.pill { font-size: 0.65rem; padding: 3px 9px; border-radius: 20px; background: rgba(255, 255, 255, 0.12); color: #e8defa; white-space: nowrap; }
+.pill.now { background: rgba(40, 200, 64, 0.18); color: #8ff0a4; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 2px; }
+.chip { font: inherit; font-size: 0.68rem; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.07); color: #f2f2f7; }
+button.chip { cursor: pointer; transition: background 0.15s, transform 0.1s; }
+button.chip:hover { background: rgba(183, 148, 246, 0.32); }
+button.chip:active { transform: scale(0.95); }
+button.chip.active { background: #b794f6; border-color: #b794f6; color: #1a0f2a; }
+
+.skill-detail { display: flex; flex-direction: column; gap: 4px; min-height: 66px; justify-content: center; }
+.skill-detail strong { font-size: 1rem; color: #fff; }
+.skill-detail span { font-size: 0.8rem; color: #ddd; line-height: 1.4; }
+.skill-group h3, .grp { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #c9b8e8; margin-bottom: 6px; }
+
+#projectsC { grid-template-columns: 1fr; }
+.proj-card { display: flex; flex-direction: column; overflow: hidden; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; backdrop-filter: blur(2px); transition: transform 0.2s ease, border-color 0.2s; }
+.proj-card:hover { transform: translateY(-3px); border-color: rgba(183, 148, 246, 0.7); }
+.proj-card img { width: 100%; height: 120px; object-fit: cover; }
+.proj-body { display: flex; flex-direction: column; gap: 6px; flex: 1; padding: 12px 14px 14px; }
+.proj-body h3 { font-size: 0.95rem; color: #fff; }
+.proj-body p { font-size: 0.75rem; line-height: 1.45; color: #e0e0e0; }
+.proj-body p.note { font-style: italic; color: #c9b8e8; }
+.proj-body .chips { margin: 4px 0 0; }
+.proj-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 10px; }
+
+.btn { font: inherit; font-size: 0.72rem; padding: 6px 14px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.1); color: #fff; text-decoration: none; cursor: pointer; transition: background 0.15s, transform 0.1s; }
+.btn:hover { background: rgba(255, 255, 255, 0.2); }
+.btn:active { transform: scale(0.96); }
+.btn.primary { background: #007AFF; border-color: #007AFF; }
+.btn.primary:hover { background: #2b8dff; }
+
+.quick-replies { display: flex; gap: 6px; overflow-x: auto; padding: 6px 12px; flex-shrink: 0; }
+.quick-replies .chip { white-space: nowrap; }
+
+.status-line { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem !important; padding: 4px 12px; border-radius: 20px; background: rgba(40, 200, 64, 0.15); border: 1px solid rgba(40, 200, 64, 0.35); color: #9af3ac; margin-bottom: 14px !important; }

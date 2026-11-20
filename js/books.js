@@ -1,9 +1,8 @@
 // ---------- Books (TXT Reader) ----------
 var BOOKS_LIST = [
-    { id: 'alice', title: "Alice's Adventures in Wonderland", file: 'alice.txt' },
     { id: 'dracula', title: 'Dracula', file: 'dracula.txt' },
-    { id: 'pride', title: 'Pride and Prejudice', file: 'pride.txt' },
     { id: 'metamorphosis', title: 'The Metamorphosis', file: 'meta.txt' }
+    // alice.epub is in /books but this reader only handles .txt files
 ];
 var BOOKS_PROGRESS_KEY = 'booksProgress';
 var currentBookId = null;

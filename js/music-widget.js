@@ -1,7 +1,7 @@
 var musicWidgetInterval = null;
 
 function createMusicWidget() {
-    var appGrid = document.getElementById('app-grid');
+    var appGrid = (window.widgetHost ? window.widgetHost() : document.getElementById('app-grid'));
     if (!appGrid) return;
 
     var existing = document.getElementById('musicWidget');
@@ -72,10 +72,13 @@ function createMusicWidget() {
         updateMusicWidgetUI();
     });
 
-    audio.addEventListener('play', updateMusicWidgetUI);
-    audio.addEventListener('pause', updateMusicWidgetUI);
-    audio.addEventListener('timeupdate', updateMusicWidgetUI);
-    audio.addEventListener('ended', updateMusicWidgetUI);
+    if (!window._mwBound) { // bind once, even if the widget is rebuilt on a phone/laptop switch
+        window._mwBound = true;
+        audio.addEventListener('play', updateMusicWidgetUI);
+        audio.addEventListener('pause', updateMusicWidgetUI);
+        audio.addEventListener('timeupdate', updateMusicWidgetUI);
+        audio.addEventListener('ended', updateMusicWidgetUI);
+    }
 
     if (musicWidgetInterval) clearInterval(musicWidgetInterval);
     musicWidgetInterval = setInterval(updateMusicWidgetUI, 1000);

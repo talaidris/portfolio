@@ -49,7 +49,7 @@ async function getDailyQuote() {
 
 async function createQuotesWidget() {
     const quoteData = await getDailyQuote();
-    const appGrid = document.getElementById('app-grid');
+    const appGrid = (window.widgetHost ? window.widgetHost() : document.getElementById('app-grid'));
     if (!appGrid) return;
 
     const existing = document.getElementById('quotesWidget');

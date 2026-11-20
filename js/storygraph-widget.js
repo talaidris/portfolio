@@ -7,11 +7,11 @@ const CURRENT_BOOK = {
 };
 
 function createStoryGraphWidget() {
-    const appGrid = document.getElementById('app-grid');
+    const appGrid = (window.widgetHost ? window.widgetHost() : document.getElementById('app-grid'));
     if (!appGrid) return;
 
     const existing = document.getElementById('storygraphWidget');
-    if (existing) existing.remove();
+    if (existing) (existing.closest('.widget-link') || existing).remove();
 
     const widgetLink = document.createElement('a');
     widgetLink.href = STORYGRAPH_PROFILE_URL;
