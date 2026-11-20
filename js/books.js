@@ -1,8 +1,11 @@
 // ---------- Books (TXT Reader) ----------
+// To add a book: put its .txt file in /books and add one line here.
+// (id must be unique; file is the filename inside /books)
 var BOOKS_LIST = [
+    { id: 'alice', title: "Alice's Adventures in Wonderland", file: 'alice.txt' },
     { id: 'dracula', title: 'Dracula', file: 'dracula.txt' },
+    { id: 'pride', title: 'Pride and Prejudice', file: 'pride.txt' },
     { id: 'metamorphosis', title: 'The Metamorphosis', file: 'meta.txt' }
-    // alice.epub is in /books but this reader only handles .txt files
 ];
 var BOOKS_PROGRESS_KEY = 'booksProgress';
 var currentBookId = null;

@@ -22,9 +22,11 @@ function createStoryGraphWidget() {
     widgetDiv.id = 'storygraphWidget';
     widgetDiv.className = 'app widget-2x2';
 
+    // Shown when there's no cover URL, or when the cover image fails to load.
+    const coverFallback = '<div style="width:70px;height:105px;background:#2c2c2e;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2rem;">📖</div>';
     const coverHtml = CURRENT_BOOK.coverUrl
-        ? `<img src="${CURRENT_BOOK.coverUrl}" alt="Book cover" onerror="this.onerror=null; this.parentElement.innerHTML='<div style=\'width:70px;height:105px;background:#2c2c2e;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2rem;\'>📖</div>';">`
-        : `<div style="width:70px;height:105px;background:#2c2c2e;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2rem;">📖</div>`;
+        ? `<img src="${CURRENT_BOOK.coverUrl}" alt="Book cover">`
+        : coverFallback;
 
     widgetDiv.innerHTML = `
         <div class="widget-content">
@@ -36,6 +38,13 @@ function createStoryGraphWidget() {
             </div>
         </div>
     `;
+
+    const coverImg = widgetDiv.querySelector('.book-cover img');
+    if (coverImg) {
+        coverImg.addEventListener('error', function () {
+            coverImg.parentElement.innerHTML = coverFallback;
+        }, { once: true });
+    }
 
     widgetLink.appendChild(widgetDiv);
 
